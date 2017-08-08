@@ -1,0 +1,48 @@
+<view class="text-center">
+  <view class="font_18">会员登记</view>
+</view>
+<view class="flex-box padding_10">
+  <view class="padding-right_10" >
+    姓名
+  </view>
+  <view class="flex_2">
+    <input type="text" class="" bindinput="bindinput" data-name="name" />
+  </view>
+</view>
+<view class="flex-box padding_10">
+  <view class="padding-right_10">
+    电话
+  </view>
+  <view class="flex_2">
+    <input type="digit" class="" bindinput="bindinput" data-name="phone" />
+  </view>
+</view>
+<view class="flex-box padding_10">
+  <view class="padding-right_10">
+    微信
+  </view>
+  <view class="flex_2">
+    <input type="text" class="" bindinput="bindinput" data-name="wechat"  />
+  </view>
+</view>
+<view class="flex-box padding_10">
+  <view class="padding-right_10" >
+    地址
+  </view>
+  <view class="flex_2">
+    <input type="text" class="" bindinput="bindinput" data-name="address"  />
+  </view>
+</view>
+
+<view class="padding_20">
+  <button type="primary" size="" loading="{{loading}}" plain=""
+        disabled="{{disabled}}" bindtap="submit"> 保存 </button>
+</view>
+
+<view class="padding_20">
+  <radio-group class="radio-group" bindchange="radioChange">
+  <label class="radio" wx:for="{{items}}">
+    <radio value="{{item.name}}" checked="{{item.checked}}"/>{{item.value}}
+  </label>
+</radio-group>
+</view>

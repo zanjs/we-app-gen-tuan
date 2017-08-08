@@ -1,0 +1,6 @@
+build/*.js
+dev/*.js
+index.js
+dev
+bash
+src/libs

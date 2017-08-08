@@ -1,11 +1,12 @@
 {
   "pages": [
     "page/index/index",
-    "page/email/email"
+    "page/count/count",
+    "page/todo/todo"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationBarTitleText": "一键接龙",
+    "navigationBarTitleText": "跟团",
     "navigationBarBackgroundColor": "#ffffff",
     "backgroundColor": "#EEEEEE",
     "backgroundTextStyle": "light",

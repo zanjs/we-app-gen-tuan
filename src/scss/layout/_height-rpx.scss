@@ -1,5 +1,5 @@
 // height rpx
-.height-rpx {
+.h-rpx {
   @for $i from 0 through 161 {
     &_#{$i} {
       height: #{$i}rpx;

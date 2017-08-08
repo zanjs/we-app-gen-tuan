@@ -1,37 +1,31 @@
 // 前缀
 // to 不包括end
 // through 包括end
-@for $i from 9 to 50 {
-    .font {
-        &_#{$i} {
-            font-size: #{$i}px;
-        }
-        &-rpx {
-            &_#{$i} {
-                font-size: #{$i}rpx;
-            }
-        }
-    }
-}
-
 .font {
-    &-noraml {
-        font-style: normal;
+  &_0 {
+    font-size: 0;
+  }
+  @for $i from 9 to 50 {
+    &_#{$i} {
+      font-size: #{$i}px;
     }
-    &-weight {
-        &-normal {
-            font-weight: normal;
-        }
+    &-rpx {
+      &_#{$i} {
+        font-size: #{$i}rpx;
+      }
     }
-    &-family {
-        &-PingFangSC {
-            font-family: PingFangSC-Light, "Microsoft Yahei", "微软雅黑", sans-serif;
-        }
+  }
+  &-noraml {
+    font-style: normal;
+  }
+  &-weight {
+    &-normal {
+      font-weight: normal;
     }
-}
-
-.font {
-    &_0 {
-        font-size: 0;
+  }
+  &-family {
+    &-PingFangSC {
+      font-family: PingFangSC-Light, "Microsoft Yahei", "微软雅黑", sans-serif;
     }
+  }
 }

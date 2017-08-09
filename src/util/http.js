@@ -1,10 +1,10 @@
 import { Promise } from '../libs/es6-promise'
 import STORAGE from '../mwx/storage'
-import LOGIN from '../model/login'
+import LoginServe from '../login/serve'
 import LANG from '../lang/lang'
 // stack
 import Status from '../set/status'
-// import MSG from '../mwx/msg'
+import Print from '../util/print'
 
 
 const REQ_METHOD = {
@@ -35,7 +35,6 @@ export default {
    * @returns
    */
   post(url, data = {}) {
-    const vm = this
     return new Promise((resolve, reject) => {
       const key = wx.getStorageSync(STORAGE.userKey)
 
@@ -59,13 +58,13 @@ export default {
         method: REQ_METHOD.POST,
         success(res) {
           const resData = res.data
-          vm.serveReact(res)
-
-          resolve(resData)
+          LoginServe.serveReact(() => {
+            resolve(resData)
+          })
         },
         fail: (err) => {
-          console.log('请求失败')
-          vm.ErrorServe(err)
+          Print.Log('请求失败')
+          Status.notfind(true, err)
           reject(err)
         },
       })
@@ -78,7 +77,6 @@ export default {
    * @returns
    */
   get(url, data = {}) {
-    const vm = this
     return new Promise((resolve) => {
       const key = wx.getStorageSync(STORAGE.userKey)
 
@@ -104,8 +102,8 @@ export default {
           resolve(res.data)
         },
         fail: (err) => {
-          console.log('报错了')
-          vm.ErrorServe(err)
+          Print.Error('报错了')
+          Status.notfind(true, err)
           resolve(false)
         },
       })
@@ -127,35 +125,10 @@ export default {
         },
         success(res) {
           const data = res.data
-          console.log(data)
+          Print.Log(data)
           resolve(data)
         },
       })
     })
-  },
-  /**
-   * service 数据返回响应处理
-   * @param {any} res
-   */
-  serveReact(res) {
-    const data = res.data
-    if (typeof res !== 'object') {
-      return
-    }
-    if (data.Code === -2000) {
-      LOGIN.LOGINAll()
-
-      const paeges = getCurrentPages()
-      const vm = paeges[paeges.length - 1]
-      vm.wetoast.toast()
-      vm.setData({
-        error: true,
-        errorMsg: vm.data.LANG.LoginRefresh,
-        emptyImg: vm.data.emptyImg,
-      })
-    }
-  },
-  ErrorServe(err) {
-    Status.notfind(true, err)
   },
 }

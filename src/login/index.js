@@ -1,11 +1,12 @@
-// middleware 层
+// login 层
 import {
   Promise,
 } from '../libs/es6-promise'
 import Config from '../config'
 // stroage
 import Storage from '../mwx/storage'
-import Login from '../model/login'
+import WxLogin from '../mwx/login'
+import Print from '../util/print'
 
 export default {
   /**
@@ -14,7 +15,7 @@ export default {
    */
   auth() {
     return new Promise((resolve) => {
-      const wxUserInfo = Login.wxLoginGetUserInfo()
+      const wxUserInfo = WxLogin.wxLoginGetUserInfo()
 
       wxUserInfo.then((resp) => {
         wx.request({
@@ -29,7 +30,7 @@ export default {
             'content-type': 'application/json',
           },
           success(res) {
-            console.log(res.data)
+            Print.Log(res.data)
             const nowTime = new Date().getTime()
 
             Storage.set(Storage.userKey, res.data.token)
@@ -38,17 +39,17 @@ export default {
             resolve(res)
           },
           fail(err) {
-            console.log(err)
+            Print.Error(err)
             resolve(false)
           },
         })
 
-        console.log(resp)
+        Print.Log(resp)
       })
 
       wxUserInfo.catch((err) => {
-        console.warn('err 拒绝了授权')
-        console.log(err)
+        Print.Error('err 拒绝了授权')
+        Print.Error(err)
         resolve(false)
       })
     })

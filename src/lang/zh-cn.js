@@ -14,4 +14,5 @@ export default {
   ServeOutRefresh: '服务器开小差了，请刷新',
   ShareFriend: '点击右上角分享给更多好友吧',
   PostOK: '发布成功',
+  NotfindMsg: '没找到数据哎...',
 }

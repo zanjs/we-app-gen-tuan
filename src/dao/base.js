@@ -4,7 +4,7 @@ import {
 } from '../libs/es6-promise'
 // stroage
 import Storage from '../mwx/storage'
-import Login from '../middleware/login'
+import Login from '../login'
 // Env
 import Env from '../env'
 import Print from '../util/print'

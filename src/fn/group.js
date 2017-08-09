@@ -1,4 +1,4 @@
-import Print from './print'
+import Print from '../util/print'
 import DateTool from '../util/date'
 
 export default {
